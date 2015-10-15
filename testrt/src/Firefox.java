@@ -81,48 +81,27 @@ public class Firefox {
 	}
    
    @Test(priority=4)
-	public void ProcessOfPost() throws InterruptedException, AWTException{
+	public void ProcessOfPost() throws InterruptedException, AWTException, IOException{
 	   driver.get("http://demo.rtcamp.com/rtmedia/");
 	   signInwithvalidCredential();
+	   Thread.sleep(2000);
 		String txt = "Text";
 	   driver.findElement(By.xpath("//*[@id='whats-new']")).sendKeys(txt);
 	   driver.findElement(By.xpath("//button[@id='rtmedia-add-media-button-post-update']/span")).click();
-	   Robot r = new Robot();
-	   r.keyPress(KeyEvent.VK_TAB);
-	  r.keyRelease(KeyEvent.VK_TAB);
-	  r.keyPress(KeyEvent.VK_TAB);
-	  r.keyRelease(KeyEvent.VK_TAB);
-	  r.keyPress(KeyEvent.VK_TAB);
-	  r.keyRelease(KeyEvent.VK_TAB);
-	  r.keyPress(KeyEvent.VK_TAB);
-	  r.keyRelease(KeyEvent.VK_TAB);
-	  r.keyPress(KeyEvent.VK_TAB);
-	  r.keyRelease(KeyEvent.VK_TAB);
-	  r.keyPress(KeyEvent.VK_TAB);
-	  r.keyRelease(KeyEvent.VK_TAB);
-	  
-	  //enter jpg in search field
-	  r.keyPress(KeyEvent.VK_J);
-	  r.keyRelease(KeyEvent.VK_J);
-	  r.keyPress(KeyEvent.VK_P);
-	  r.keyRelease(KeyEvent.VK_P);
-	  r.keyPress(KeyEvent.VK_G);
-	  r.keyRelease(KeyEvent.VK_G);
-	  r.keyPress(KeyEvent.VK_ENTER);
-	  r.keyRelease(KeyEvent.VK_ENTER);
-	  r.keyPress(KeyEvent.VK_DOWN);
-	  r.keyRelease(KeyEvent.VK_DOWN);
-	  r.keyPress(KeyEvent.VK_DOWN);
-	  r.keyRelease(KeyEvent.VK_DOWN);
-	  r.keyPress(KeyEvent.VK_ENTER);
-	  r.keyRelease(KeyEvent.VK_ENTER);
+	   Runtime.getRuntime().exec("D:\\rtcamp.exe");
+	   Thread.sleep(5000);
 	  
 	  
 	  driver.findElement(By.cssSelector("input#aw-whats-new-submit")).click();
-	  Thread.sleep(2000);
-	  String name=   driver.findElement(By.xpath("//ul[@id='activity-stream']/li[1]/div[2]/div[2]/p")).getText();
+	  Thread.sleep(30000);
+	  String name=   driver.findElement(By.xpath("//li[1]/div[2]/div[2]/div/div")).getText();
 	   if(name.compareTo(txt)==0){
 		   System.out.print("\n posted Sucessfully under friends tab");
+		   if(isElementPresent(By.xpath("//div[contains(text(),'Chrysanthemum')]"))==true){
+			  System.out.print("\n Image Uploaded Sucessfully."); 
+		   }else{
+			  System.out.print("\n Image Not Uploaded ."); 
+		   }
 	   }else{
 		   System.out.print("\n Not posted under friends tab");
 	   }
@@ -133,6 +112,7 @@ public class Firefox {
    @Test(priority=5)
 	public void PrivacySettings() throws InterruptedException{
 	   driver.get("http://demo.rtcamp.com/rtmedia/");
+	   
 	   signInwithvalidCredential();
 	   String txt = "Text";
 	   driver.findElement(By.xpath("//*[@id='whats-new']")).sendKeys(txt);
@@ -146,7 +126,7 @@ public class Firefox {
 	   driver.findElement(By.xpath("//*[@id='activity-friends']/a")).click();//friends tab
 	   Thread.sleep(2000);
 	try{   
-	String name=   driver.findElement(By.xpath("//ul[@id='activity-stream']/li[1]/div[2]/div[2]/p")).getText();
+	String name=   driver.findElement(By.xpath("//li[1]/div[2]/div[2]/div/div")).getText();
 	   if(name.compareTo(txt)==0){
  		   System.out.print("\n posted Sucessfully under friends tab");
  	   }else{
@@ -159,7 +139,7 @@ public class Firefox {
 	driver.findElement(By.xpath("//*[@id='activity-all']/a")).click();//All Member tab
 	   Thread.sleep(2000);
 	   try{   
-			String name=   driver.findElement(By.xpath("//ul[@id='activity-stream']/li[1]/div[2]/div[2]/p")).getText();
+			String name=   driver.findElement(By.xpath("//li[1]/div[2]/div[2]/div/div")).getText();
 			   if(name.compareTo(txt)==0){
 		 		   System.out.print("\n posted Sucessfully under All member tab");
 		 	   }else{
@@ -171,7 +151,7 @@ public class Firefox {
 	   driver.findElement(By.xpath("//*[@id='activity-groups']/a")).click();//My Group
 	   Thread.sleep(2000);
 	   try{   
-			String name=   driver.findElement(By.xpath("//ul[@id='activity-stream']/li[1]/div[2]/div[2]/p")).getText();
+			String name=   driver.findElement(By.xpath("//li[1]/div[2]/div[2]/div/div")).getText();
 			   if(name.compareTo(txt)==0){
 		 		   System.out.print("\n posted Sucessfully under My Group tab");
 		 	   }else{
@@ -210,55 +190,37 @@ public class Firefox {
   	}
    
    @Test(priority=7)
- 	public void UploadMedia() throws InterruptedException, AWTException{
+	public void UploadMedia() throws InterruptedException, AWTException, IOException{
 	   driver.get("http://demo.rtcamp.com/rtmedia/");
 	   signInwithvalidCredential();
 	   driver.get("http://demo.rtcamp.com/rtmedia/members/demo/media/album/");
-	   Thread.sleep(2000);
 	   driver.findElement(By.xpath("//*[@id='rtm_show_upload_ui']")).click();
-	   driver.findElement(By.cssSelector("input#rtMedia-upload-button")).click();
-	   Robot r = new Robot();
-	   r.keyPress(KeyEvent.VK_TAB);
-	  r.keyRelease(KeyEvent.VK_TAB);
-	  r.keyPress(KeyEvent.VK_TAB);
-	  r.keyRelease(KeyEvent.VK_TAB);
-	  r.keyPress(KeyEvent.VK_TAB);
-	  r.keyRelease(KeyEvent.VK_TAB);
-	  r.keyPress(KeyEvent.VK_TAB);
-	  r.keyRelease(KeyEvent.VK_TAB);
-	  r.keyPress(KeyEvent.VK_TAB);
-	  r.keyRelease(KeyEvent.VK_TAB);
-	  r.keyPress(KeyEvent.VK_TAB);
-	  r.keyRelease(KeyEvent.VK_TAB);
-	  
-	  //enter jpg in search field
-	  r.keyPress(KeyEvent.VK_J);
-	  r.keyRelease(KeyEvent.VK_J);
-	  r.keyPress(KeyEvent.VK_P);
-	  r.keyRelease(KeyEvent.VK_P);
-	  r.keyPress(KeyEvent.VK_G);
-	  r.keyRelease(KeyEvent.VK_G);
-	  r.keyPress(KeyEvent.VK_ENTER);
-	  r.keyRelease(KeyEvent.VK_ENTER);
-	  r.keyPress(KeyEvent.VK_DOWN);
-	  r.keyRelease(KeyEvent.VK_DOWN);
-	  r.keyPress(KeyEvent.VK_DOWN);
-	  r.keyRelease(KeyEvent.VK_DOWN);
-	  r.keyPress(KeyEvent.VK_ENTER);
-	  r.keyRelease(KeyEvent.VK_ENTER);
-	  
-	  Select s = new Select(driver.findElement(By.cssSelector("select.rtmedia-user-album-list")));
+	   Thread.sleep(5000);
+	   Select s = new Select(driver.findElement(By.cssSelector("select.rtmedia-user-album-list")));
 	   s.selectByValue("1");//Album
 	   
 	   Select s1 = new Select(driver.findElement(By.id("rtSelectPrivacy")));
 	   s1.selectByValue("40");//PrivacySetting
+	    
+	   
+	   //String url = "C:/Users/Public/Pictures/Sample Pictures/Desert.jpg";
+	   driver.findElement(By.cssSelector("input#rtMedia-upload-button")).click();
+	   Runtime.getRuntime().exec("D:\\rtcamp.exe");
+	   Thread.sleep(5000);
 	   
 	   driver.findElement(By.cssSelector("input.start-media-upload")).click();
+	   Thread.sleep(20000);
 	   
-	  String title= driver.findElement(By.xpath("//*[@id='4853']/a/div[2]/h4")).getAttribute("title");
+	   driver.findElement(By.xpath("//H4[contains(text(),'Wall Posts')]")).click();
+ 		Thread.sleep(5000);
+ 		
+	  if(isElementPresent(By.xpath("//H4[contains(text(),'Chrysanthemum')]"))==true)
+	  {
+		  String title= driver.findElement(By.xpath("//H4[contains(text(),'Chrysanthemum')]")).getAttribute("title");
 	   System.out.print("Media name:" + title +" uploaded on wall posts.");
+	  }
 	   Logout();
- 	}
+	}
    
    
    @Test(priority=8)
@@ -266,9 +228,11 @@ public class Firefox {
 	   driver.get("http://demo.rtcamp.com/rtmedia/");
 	   signInwithvalidCredential();
 	   driver.get("http://demo.rtcamp.com/rtmedia/members/demo/media/album/");
-	   Thread.sleep(2000);
+	   Thread.sleep(5000);
 	   driver.findElement(By.xpath("//*[@id='rtm_show_upload_ui']")).click();
+	   Thread.sleep(3000);
 	   driver.findElement(By.cssSelector("li.rtm-url-import-tab")).click();
+	   Thread.sleep(3000);
 	  driver.findElement(By.cssSelector("textarea#rtmedia_url_upload_input")).sendKeys("https://rtcamp-481283.c.cdn77.org/wp-content/uploads/2013/11/rtCamp-logo-512x512-blue.png");
 	  
 	 	   
@@ -276,10 +240,10 @@ public class Firefox {
 	   s1.selectByValue("40");//PrivacySetting
 	   Thread.sleep(8000);
 	   driver.findElement(By.cssSelector("input.start-media-upload")).click();
-	   Thread.sleep(8000);
-	   		driver.findElement(By.xpath("//H4[contains(text(),'Wall Posts')]")).click();
+	   Thread.sleep(20000);
+	   		driver.findElement(By.xpath("//H4[contains(text(),'Default album')]")).click();
 	   		Thread.sleep(5000);
-	   String title= driver.findElement(By.xpath("//*[@id='4853']/a/div[2]/h4")).getAttribute("title");
+	   String title= driver.findElement(By.xpath("//li[1]/a/div[2]/h4")).getAttribute("title");
 	   System.out.print("Media name:" + title +" uploaded on wall posts.");
 	   Logout();
 	  
